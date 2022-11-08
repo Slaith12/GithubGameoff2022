@@ -6,16 +6,16 @@ namespace Utilities
     public class CopyTMPText : MonoBehaviour
     {
         public TextMeshProUGUI source;
-        private TextMeshProUGUI mine;
+        private TextMeshProUGUI _mine;
 
         private void Start()
         {
-            mine = GetComponent<TextMeshProUGUI>();
+            _mine = GetComponent<TextMeshProUGUI>();
         }
 
         private void LateUpdate()
         {
-            mine.text = source.text;
+            _mine.text = source.text;
         }
     }
 }
