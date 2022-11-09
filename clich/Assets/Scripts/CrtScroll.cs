@@ -9,23 +9,31 @@ public class CrtScroll : MonoBehaviour
 
     private void Start()
     {
-        _parent = transform.parent.GetComponent<TileCrt>();
-    }
-
-    private void Update()
-    {
-        if (!_active) return;
-        transform.Translate(0, 1, 0);
-        var location = transform.position;
-        if (location.y > _parent.maxY)
+        var test = transform.parent;
+        _parent = test.GetComponent<TileCrt>();
+        var i = 1;
+        while (!_parent)
         {
-            Debug.Log(_parent.maxY + " " + location.y);
-            transform.position = new Vector2(location.x, _parent.minY);
+            i++;
+            test = test.parent;
+            _parent = test.GetComponent<TileCrt>();
         }
+        Debug.Log("up " + i + " levels to find parent");
     }
 
     public void Activate()
     {
         _active = true;
+    }
+
+    public void Tick(float dt)
+    {
+        if (!_active) return;
+        transform.Translate(0, speed * dt, 0);
+        var location = transform.localPosition;
+        if (location.y <= _parent.minY)
+        {
+            transform.Translate(new Vector2(0, _parent.maxY - _parent.minY));
+        }
     }
 }

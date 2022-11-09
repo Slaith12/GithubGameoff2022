@@ -9,7 +9,11 @@ public class TileCrt : MonoBehaviour
 
     public int count;
 
-    private IList<GameObject> _tiles = new List<GameObject>();
+    public GameObject _container;
+    
+    private int _delay = 2;
+
+    private IList<CrtScroll> _tiles = new List<CrtScroll>();
     
     private void Start()
     {
@@ -17,17 +21,30 @@ public class TileCrt : MonoBehaviour
         Debug.Log(count);
         for (var i = 0; i < count; i++)
         {
-            var y = minY + step * i;
+            var y = minY + step * (i + 0.5f);
             var go = Instantiate(prefab, transform);
+            go.transform.SetParent(_container.transform);
             go.transform.localPosition = new Vector3(0, y, 0);
-            go.GetComponent<CrtScroll>().Activate();
-            _tiles.Add(go);
+            _tiles.Add(go.GetComponent<CrtScroll>());
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        _delay--;
+        if (_delay == 0)
+        {
+            foreach (var tile in _tiles)
+            {
+                tile.Activate();
+            }
+        }
+
+        var dt = Time.deltaTime;
+        foreach (var crtScroll in _tiles)
+        {
+            crtScroll.Tick(dt);
+        }
     }
 }
