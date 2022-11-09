@@ -7,9 +7,10 @@ public class TileCrt : MonoBehaviour
     public float minY;
     public float maxY;
 
+    public float density;
     public int count;
 
-    public GameObject _container;
+    public GameObject container;
     
     private int _delay = 2;
 
@@ -17,13 +18,18 @@ public class TileCrt : MonoBehaviour
     
     private void Start()
     {
+        var h = Screen.height;
+        minY = h / -2f;
+        maxY = h / 2f;
+        count = (int) (density * h);
+        
         var step = (maxY - minY) / count;
         Debug.Log(count);
         for (var i = 0; i < count; i++)
         {
             var y = minY + step * (i + 0.5f);
             var go = Instantiate(prefab, transform);
-            go.transform.SetParent(_container.transform);
+            go.transform.SetParent(container.transform);
             go.transform.localPosition = new Vector3(0, y, 0);
             _tiles.Add(go.GetComponent<CrtScroll>());
         }
