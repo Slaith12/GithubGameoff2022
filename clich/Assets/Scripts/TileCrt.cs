@@ -18,9 +18,7 @@ public class TileCrt : MonoBehaviour
     
     private void Start()
     {
-        var h = Screen.height;
-        minY = h / -2f;
-        maxY = h / 2f;
+        var h = maxY-minY;
         count = (int) (density * h);
         
         var step = (maxY - minY) / count;

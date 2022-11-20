@@ -153,8 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 8111727988534754112, guid: 595abff89a2696c849134fe554d0b454, type: 3}
-  minY: 0
-  maxY: 0
+  minY: -540
+  maxY: 540
   density: 0.1
   count: 0
   container: {fileID: 1263951756884406640}
