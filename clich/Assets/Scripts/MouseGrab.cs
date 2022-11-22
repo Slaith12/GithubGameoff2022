@@ -35,6 +35,10 @@ public class MouseGrab : MonoBehaviour
         if (selectedObject && Input.GetMouseButton(0)) 
         {
             selectedObject.transform.position = new Vector2(mousePos.x, mousePos.y);
+            if (selectedObject.GetComponent<Rigidbody2D>() != null)
+            {
+                selectedObject.GetComponent<Rigidbody2D>().velocity = new Vector2(selectedObject.GetComponent<Rigidbody2D>().velocity.x, 0);
+            }
         }
         
 
