@@ -9,6 +9,11 @@ public class SampleGame1 : Minigame
     [SerializeField] TMP_Text text;
     private int count;
 
+    private void Awake()
+    {
+        text.text = "Minigame not started yet";
+    }
+
     public override void StartMinigame()
     {
         started = true;
@@ -22,7 +27,11 @@ public class SampleGame1 : Minigame
             return;
         if (Input.GetKeyDown(KeyCode.Space))
             count++;
-        Debug.Log(count);
         text.SetText($"You pressed space {count} times since the start of the minigame!");
+    }
+
+    public override string GetInstructionSnippet()
+    {
+        return "Press Space";
     }
 }

@@ -8,4 +8,9 @@ public class SampleGame2 : Minigame
     {
         started = true;
     }
+
+    public override string GetInstructionSnippet()
+    {
+        return "Move Around";
+    }
 }
