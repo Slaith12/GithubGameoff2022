@@ -50,8 +50,8 @@ public class GameManager : MonoBehaviour
     //called by minigame when finished
     public void EndCurrentMinigame(bool isWin)
     {
-        //transitionAnimator.SetBool(1, true); //end
-        transitionAnimator.Play("End Minigame"); //the animator thinks the parameters don't exist so this is the next best thing
+        transitionAnimator.SetTrigger("End");
+        //transitionAnimator.Play("End Minigame"); //the animator thinks the parameters don't exist so this is the next best thing
         wasWin = isWin;
     }
 
@@ -82,8 +82,8 @@ public class GameManager : MonoBehaviour
     public void GoToNextMinigame()
     {
         LoadMinigame(GetNewMinigameID());
-        //transitionAnimator.SetBool(0, true); //start
-        transitionAnimator.Play("Start Minigame"); //the animator thinks the parameters don't exist so this is the next best thing
+        transitionAnimator.SetTrigger("Start");
+        //transitionAnimator.Play("Start Minigame"); //the animator thinks the parameters don't exist so this is the next best thing
     }
 
     private int GetNewMinigameID()
