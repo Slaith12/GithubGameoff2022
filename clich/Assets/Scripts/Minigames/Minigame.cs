@@ -9,7 +9,13 @@ public abstract class Minigame : MonoBehaviour
 
     public abstract string GetInstructionSnippet();
 
-    protected void EndMinigame(bool isWin)
+    //animation events can't use bool parameters so this is here for animations
+    void EndMinigame(int isWin)
+    {
+        EndMinigame(isWin == 1);
+    }
+
+    public void EndMinigame(bool isWin)
     {
         started = false;
         GameManager.gameManager.EndCurrentMinigame(isWin);

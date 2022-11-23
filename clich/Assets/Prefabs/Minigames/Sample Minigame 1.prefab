@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6263992683990832747}
   - component: {fileID: -8984474369881542686}
+  - component: {fileID: 4590347188732857056}
   m_Layer: 0
   m_Name: Sample Minigame 1
   m_TagString: Untagged
@@ -47,6 +48,25 @@ MonoBehaviour:
   started: 0
   text: {fileID: 654351029306543132}
   maxTime: 5
+--- !u!95 &4590347188732857056
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8172310154088266207}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 47b31493a0688664ca7696dc5b540f7d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8323418491132446189
 GameObject:
   m_ObjectHideFlags: 0
