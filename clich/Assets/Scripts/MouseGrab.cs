@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class MouseGrab : MonoBehaviour
 {
-    public Transform mousePos;
-    public GameObject selectedObject;
+    private GameObject selectedObject;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +16,7 @@ public class MouseGrab : MonoBehaviour
     void Update()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        this.transform.position = mousePos;
+        transform.position = mousePos;
 
         Collider2D col = Physics2D.OverlapPoint(mousePos);
         
@@ -37,7 +36,7 @@ public class MouseGrab : MonoBehaviour
             selectedObject.transform.position = new Vector2(mousePos.x, mousePos.y);
             if (selectedObject.GetComponent<Rigidbody2D>() != null)
             {
-                selectedObject.GetComponent<Rigidbody2D>().velocity = new Vector2(selectedObject.GetComponent<Rigidbody2D>().velocity.x, 0);
+                selectedObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             }
         }
         
