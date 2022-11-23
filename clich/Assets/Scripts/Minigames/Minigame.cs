@@ -11,6 +11,7 @@ public abstract class Minigame : MonoBehaviour
 
     protected void EndMinigame(bool isWin)
     {
+        started = false;
         GameManager.gameManager.EndCurrentMinigame(isWin);
     }
 }

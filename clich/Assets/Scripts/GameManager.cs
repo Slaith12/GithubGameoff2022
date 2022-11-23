@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     private Animator transitionAnimator;
     [SerializeField] TMP_Text levelText;
+    [SerializeField] TimerManager timer;
 
     [SerializeField] Minigame[] minigames;
     public int forceMinigame = -1;
@@ -22,6 +23,11 @@ public class GameManager : MonoBehaviour
         transitionAnimator = GetComponent<Animator>();
         currentIndex = -1;
         LoadMinigame(GetNewMinigameID());
+    }
+
+    public void SetTimerPercentage(float percentage)
+    {
+        timer.SetBarWidth(percentage);
     }
 
     public void LoadMinigame(int index)
