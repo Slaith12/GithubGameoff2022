@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Minigame : MonoBehaviour
 {
-    [HideInInspector] public bool started = false;
+    [HideInInspector] public bool started;
     public abstract void StartMinigame(); //this is here so if we want to have the game start a bit after the transition we can do that, please use this instead of Start()
 
     public abstract string GetInstructionSnippet();

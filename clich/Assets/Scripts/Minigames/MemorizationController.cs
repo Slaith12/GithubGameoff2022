@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Memorization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.U2D;
 using UnityEngine.UI;
+using Utilities;
 using Random = UnityEngine.Random;
 
 public class MemorizationController : Minigame
@@ -20,9 +22,19 @@ public class MemorizationController : Minigame
     public SpriteRenderer buttonSquare;
     public SpriteRenderer buttonCircle;
     public SpriteShapeRenderer buttonTriangle;
+
+    public ArrayContainer lightArray;
     
-    private enum Button {Diamond, Square, Circle, Triangle};
+    public enum Button {Diamond, Square, Circle, Triangle};
     private static readonly List<Button> _buttons = new List<Button>();
+
+    private void Start()
+    {
+        foreach (var o in lightArray.contents)
+        {
+            o.GetComponent<SpriteRenderer>().color = new Color(51, 51, 51);
+        }
+    }
 
     public override void StartMinigame()
     {
@@ -34,9 +46,16 @@ public class MemorizationController : Minigame
         if (_beginCount % 2 == 1)
         {
             _buttons.Clear();
-            InvokeRepeating(nameof(PulseAdd), 0, 0.5f);
+            var i = 0;
+            for (i = 0; i < 6; i++)
+            {
+                Invoke(nameof(PulseAdd), i * 0.75f);
+            }
+            Invoke(nameof(FinishEarly), i * 0.75f + 1f);
         }
     }
+    
+    public bool IsMemorize => _beginCount % 2 == 1;
 
     private void Pulse()
     {
@@ -68,7 +87,26 @@ public class MemorizationController : Minigame
                 buttonTriangle.color = Color.yellow;
                 buttonTriangle.transform.localScale *= .8f;
                 break;
-        } 
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+        
+        _buttons.Add(toAdd);
+        for (int i = 0; i < _buttons.Count; i++)
+        {
+            lightArray.contents[i].GetComponent<SpriteRenderer>().color = Color.blue;
+        }
+    }
+
+    public void ClickEventHandler(GameObject origin, ButtonInteraction interaction)
+    {
+        if (IsMemorize) return;
+        
+    }
+    
+    private void FinishEarly()
+    {
+        EndMinigame(true);
     }
 
     public override void EndMinigame(bool isWin)
@@ -82,18 +120,15 @@ public class MemorizationController : Minigame
     {
         if (!started)
             return;
-
-        _timer -= Time.deltaTime;
+        if (!IsMemorize) _timer -= Time.deltaTime;
         GameManager.gameManager.SetTimerPercentage(_timer / maxTime);
-        if(_timer <= 0)
-        {
-            started = false;
-            EndMinigame(true);
-        }
+        if (_timer > 0) return;
+        started = false;
+        EndMinigame(IsMemorize || false /* TODO */);
     }
 
     public override string GetInstructionSnippet()
     {
-        return _beginCount % 2 == 0 ? "Recall!" : "Memorize!";
+        return _beginCount % 2 == 0 ? "Memorize!" : "Recall!";
     }
 }
