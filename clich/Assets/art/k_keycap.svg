@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="32"
+   height="32"
+   viewBox="0 0 8.466667 8.466667"
+   version="1.1"
+   id="svg5"
+   inkscape:export-filename="k_keycap.png"
+   inkscape:export-xdpi="1536"
+   inkscape:export-ydpi="1536"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   sodipodi:docname="k_keycap.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     showgrid="true"
+     inkscape:zoom="12.500449"
+     inkscape:cx="24.719112"
+     inkscape:cy="13.199526"
+     inkscape:window-width="1920"
+     inkscape:window-height="1057"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid132"
+       originx="0"
+       originy="0"
+       empspacing="4" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#808080;stroke-width:1.05833;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0.3;stroke-dasharray:none;stroke-opacity:1"
+       d="M 0.52916666,0.52916666 H 7.9374999 V 6.8791666 L 6.8791666,7.9374999 H 0.52916666 Z"
+       id="path984"
+       sodipodi:insensitive="true"
+       inkscape:label="key_outline" />
+    <path
+       style="fill:none;fill-opacity:0.5;stroke:#ffffff;stroke-width:1.05833;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0.3;stroke-dasharray:none;stroke-opacity:1"
+       d="M 2.1166666,2.1166666 V 6.3499999"
+       id="path1934" />
+    <path
+       style="fill:none;fill-opacity:0.5;stroke:#ffffff;stroke-width:1.05833;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:0.3;stroke-dasharray:none;stroke-opacity:1"
+       d="M 6.3499999,2.1166666 2.1166666,4.2333333 6.3499999,6.3499999"
+       id="path1936" />
+  </g>
+</svg>

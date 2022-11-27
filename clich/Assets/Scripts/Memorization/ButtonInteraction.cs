@@ -19,8 +19,8 @@ namespace Memorization
                 return (_parent.IsMemorize, hovered, pressed) switch
                 {
                     (true, _, _) => _originalScale,
-                    (_, true, false) => _originalScale * 1.2f,
-                    (_, true, true) => _originalScale * 1.1f,
+                    (_, true, false) => _originalScale * 1.1f,
+                    (_, true, true) => _originalScale * 0.9f,
                     _ => _originalScale
                 };
             }

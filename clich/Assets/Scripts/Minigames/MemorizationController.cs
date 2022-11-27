@@ -1,11 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Memorization;
-using TMPro;
 using UnityEngine;
 using UnityEngine.U2D;
-using UnityEngine.UI;
 using Utilities;
 using Random = UnityEngine.Random;
 
@@ -65,6 +62,14 @@ public class MemorizationController : Minigame
         buttonTriangle.color = Color.white;
     }
 
+    private void UpdateLights(int count)
+    {
+        for (var i = 0; i < count; i++)
+        {
+            lightArray.contents[i].GetComponent<SpriteRenderer>().color = Color.blue;
+        }
+    }
+
     private void PulseAdd()
     {
         Pulse();
@@ -92,10 +97,7 @@ public class MemorizationController : Minigame
         }
         
         _buttons.Add(toAdd);
-        for (int i = 0; i < _buttons.Count; i++)
-        {
-            lightArray.contents[i].GetComponent<SpriteRenderer>().color = Color.blue;
-        }
+        UpdateLights(_buttons.Count);
     }
 
     public void ClickEventHandler(GameObject origin, ButtonInteraction interaction)
