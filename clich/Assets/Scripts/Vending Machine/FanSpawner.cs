@@ -9,6 +9,7 @@ public class FanSpawner : MonoBehaviour
     [SerializeField] GameObject fan;
     private bool readyForNext = true;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +23,8 @@ public class FanSpawner : MonoBehaviour
             return;
         if(readyForNext == true)
         {
-            //Instantiate(fan, )
+            Instantiate(fan, gameObject.transform);
+            readyForNext = false;
         }
     }
 }
