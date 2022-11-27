@@ -7,6 +7,7 @@ namespace Memorization
     public class ButtonInteraction : MonoBehaviour
     {
         public MemorizationController.Button buttonType;
+        public KeyCode keyCode;
         
         private SpriteRenderer _mySpriteRenderer;
         private SpriteShapeRenderer _mySpriteShapeRenderer;
@@ -19,8 +20,8 @@ namespace Memorization
                 return (_parent.IsMemorize, hovered, pressed) switch
                 {
                     (true, _, _) => _originalScale,
+                    (_, _, true) => _originalScale * 0.9f,
                     (_, true, false) => _originalScale * 1.1f,
-                    (_, true, true) => _originalScale * 0.9f,
                     _ => _originalScale
                 };
             }
@@ -70,7 +71,7 @@ namespace Memorization
             }
             transform.localScale = Vector3.Lerp(transform.localScale, TargetScale, Time.deltaTime * z2);
 
-            if (Input.GetMouseButtonDown(0) && hovered)
+            if ((Input.GetMouseButtonDown(0) && hovered) || Input.GetKeyDown(keyCode))
             {
                 _parent.ClickEventHandler(gameObject, this);
             }

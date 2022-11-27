@@ -24,6 +24,7 @@ public class MemorizationController : Minigame
     
     public enum Button {Diamond, Square, Circle, Triangle};
     private static readonly List<Button> _buttons = new List<Button>();
+    private static readonly List<Button> _inputs = new List<Button>();
 
     private void Start()
     {
@@ -43,12 +44,16 @@ public class MemorizationController : Minigame
         if (_beginCount % 2 == 1)
         {
             _buttons.Clear();
-            var i = 0;
+            int i;
             for (i = 0; i < 6; i++)
             {
                 Invoke(nameof(PulseAdd), i * 0.75f);
             }
             Invoke(nameof(FinishEarly), i * 0.75f + 1f);
+        }
+        else
+        {
+            _inputs.Clear();
         }
     }
     
@@ -62,11 +67,18 @@ public class MemorizationController : Minigame
         buttonTriangle.color = Color.white;
     }
 
-    private void UpdateLights(int count)
+    private void UpdateLights(int count, bool isWin = default)
     {
         for (var i = 0; i < count; i++)
         {
             lightArray.contents[i].GetComponent<SpriteRenderer>().color = Color.blue;
+        }
+
+        if (count != 6) return;
+        var color = isWin ? Color.green : Color.red;
+        foreach (var o in lightArray.contents)
+        {
+            o.GetComponent<SpriteRenderer>().color = color;
         }
     }
 
@@ -97,13 +109,37 @@ public class MemorizationController : Minigame
         }
         
         _buttons.Add(toAdd);
-        UpdateLights(_buttons.Count);
+        UpdateLights(_buttons.Count, true);
     }
 
     public void ClickEventHandler(GameObject origin, ButtonInteraction interaction)
     {
         if (IsMemorize) return;
-        
+        if (_inputs.Count >= 6) return;
+        origin.transform.localScale *= .8f;
+        switch (interaction.buttonType)
+        {
+            case Button.Diamond:
+                buttonDiamond.color = Color.red;
+                break;
+            case Button.Square:
+                buttonSquare.color = Color.green;
+                break;
+            case Button.Circle:
+                buttonCircle.color = Color.blue;
+                break;
+            case Button.Triangle:
+                buttonTriangle.color = Color.yellow;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+        _inputs.Add(interaction.buttonType);
+        var i = 0;
+        var valid = _inputs.Count == _buttons.Count && _inputs.TrueForAll(t => t == _buttons[i++]);
+        UpdateLights(_inputs.Count, valid);
+        if (_inputs.Count != 6) return;
+        EndMinigame(valid);
     }
     
     private void FinishEarly()
@@ -113,7 +149,6 @@ public class MemorizationController : Minigame
 
     public override void EndMinigame(bool isWin)
     {
-        CancelInvoke(nameof(Pulse));
         base.EndMinigame(isWin);
     }
 

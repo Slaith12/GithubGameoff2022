@@ -278,6 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonType: 1
+  keyCode: 107
   hovered: 0
   pressed: 0
 --- !u!61 &2251613084213646546
@@ -470,6 +471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonType: 3
+  keyCode: 100
   hovered: 0
   pressed: 0
 --- !u!60 &3677717126684336992
@@ -600,6 +602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonType: 0
+  keyCode: 102
   hovered: 0
   pressed: 0
 --- !u!61 &1824049495462941623
@@ -1712,6 +1715,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonType: 2
+  keyCode: 106
   hovered: 0
   pressed: 0
 --- !u!58 &189465239672291030
