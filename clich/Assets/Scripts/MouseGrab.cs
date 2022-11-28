@@ -22,8 +22,10 @@ public class MouseGrab : MonoBehaviour
         
         if (Input.GetMouseButtonDown(0) && col) 
         {
-            selectedObject = col.transform.gameObject;
-            
+            if(col.transform.gameObject.tag == "grabbable")
+            {
+                selectedObject = col.transform.gameObject;
+            }
         }
 
         if (Input.GetMouseButtonUp(0) && selectedObject)

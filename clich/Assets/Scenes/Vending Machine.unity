@@ -220,12 +220,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3025704696535639449, guid: 3a49dfaa114dfdc4880c9576b0b4ae3a, type: 3}
       propertyPath: minigames.Array.size
-      value: 3
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3025704696535639449, guid: 3a49dfaa114dfdc4880c9576b0b4ae3a, type: 3}
+      propertyPath: minigames.Array.data[0]
+      value: 
+      objectReference: {fileID: 4077587680472462800, guid: b12a179492002492180d3bed460ec1ed, type: 3}
+    - target: {fileID: 3025704696535639449, guid: 3a49dfaa114dfdc4880c9576b0b4ae3a, type: 3}
+      propertyPath: minigames.Array.data[1]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3025704696535639449, guid: 3a49dfaa114dfdc4880c9576b0b4ae3a, type: 3}
       propertyPath: minigames.Array.data[2]
       value: 
-      objectReference: {fileID: 4077587680472462800, guid: b12a179492002492180d3bed460ec1ed, type: 3}
+      objectReference: {fileID: 1207746254773497028, guid: 43adfff2073d62b4caeaa6757b58086d, type: 3}
+    - target: {fileID: 3025704696535639449, guid: 3a49dfaa114dfdc4880c9576b0b4ae3a, type: 3}
+      propertyPath: minigames.Array.data[3]
+      value: 
+      objectReference: {fileID: 1207746254773497028, guid: 43adfff2073d62b4caeaa6757b58086d, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a49dfaa114dfdc4880c9576b0b4ae3a, type: 3}
 --- !u!1 &1247932764
