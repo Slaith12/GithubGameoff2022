@@ -11,6 +11,8 @@ public class VendingController : Minigame
     [SerializeField] private MouseGrab mg;
     [SerializeField] private FanSpawner fs;
 
+    private bool quit = false;
+
     public override void StartMinigame()
     {
         started = true;
@@ -34,7 +36,11 @@ public class VendingController : Minigame
         if(fs.getCounter() == 7 && mg.getSelectedObject() == null)
         {
             StartCoroutine(Check());
-
+            quit = false;
+        }
+        else
+        {
+            quit = true;
         }
 
     }
@@ -52,7 +58,24 @@ public class VendingController : Minigame
     IEnumerator Check()
     {
         checking = true;
-        yield return new WaitForSeconds(3);
+
+        float counter = 3;
+        float waitTime = 0;
+        while (counter > waitTime)
+        {
+            //Increment Timer until counter >= waitTime
+            counter -= Time.deltaTime;
+            //Wait for a frame so that Unity doesn't freeze
+            //Check if we want to quit this function
+            if (quit)
+            {
+                checking = false;
+                //Quit function
+                yield break;
+            }
+            yield return null;
+        }
+
         EndMinigame(true);
     }
 }
