@@ -45,4 +45,9 @@ public class MouseGrab : MonoBehaviour
 
     }
 
+    public GameObject getSelectedObject()
+    {
+        return selectedObject;
+    }
+
 }

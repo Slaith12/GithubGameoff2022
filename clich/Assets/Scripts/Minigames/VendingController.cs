@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class VendingController : Minigame
 {
-    [SerializeField] float maxTime = 10;
+    [SerializeField] float maxTime = 15;
     private float timer;
+    private bool checking = false;
+
+    [SerializeField] private MouseGrab mg;
+    [SerializeField] private FanSpawner fs;
 
     public override void StartMinigame()
     {
@@ -18,16 +22,37 @@ public class VendingController : Minigame
     {
         if (!started)
             return;
-        timer -= Time.deltaTime;
-        GameManager.gameManager.SetTimerPercentage(timer / maxTime);
+        if(!checking)
+        {
+            timer -= Time.deltaTime;
+            GameManager.gameManager.SetTimerPercentage(timer / maxTime);
+        }
         if (timer <= 0)
         {
-            EndMinigame(true);
+            EndMinigame(false);
         }
+        if(fs.getCounter() == 7 && mg.getSelectedObject() == null)
+        {
+            StartCoroutine(Check());
+
+        }
+
     }
 
     public override string GetInstructionSnippet()
     {
         return "Stack the Fans";
+    }
+
+    public void hitGround()
+    {
+        EndMinigame(false);
+    }
+
+    IEnumerator Check()
+    {
+        checking = true;
+        yield return new WaitForSeconds(3);
+        EndMinigame(true);
     }
 }

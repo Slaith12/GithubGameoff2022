@@ -22,7 +22,7 @@ public class CrtScroll : MonoBehaviour
             test = test.parent;
             _parent = test.GetComponent<TileCrt>();
         }
-        Debug.Log("up " + i + " levels to find parent");
+        //Debug.Log("up " + i + " levels to find parent");
     }
 
     public void Activate()

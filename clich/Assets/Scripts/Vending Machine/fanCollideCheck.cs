@@ -15,4 +15,5 @@ public class fanCollideCheck : MonoBehaviour
     {
         yes.setIsColliding(false);
     }
+
 }

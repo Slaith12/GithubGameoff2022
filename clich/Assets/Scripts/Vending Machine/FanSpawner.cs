@@ -11,6 +11,8 @@ public class FanSpawner : MonoBehaviour
     [SerializeField] BoxCollider2D fanCollider;
     private bool isColliding = true;
 
+    private int counter = 0;
+
 
     // Start is called before the first frame update
     void Start()
@@ -24,11 +26,16 @@ public class FanSpawner : MonoBehaviour
         if (!minigame.started)
             return;
 
-        if(readyForNext == true)
+        if(readyForNext == true && counter < 7)
         {
-            Instantiate(fan, gameObject.transform);
+            counter++;
+            if(counter < 7)
+            {
+                Instantiate(fan, gameObject.transform);
+            }
             readyForNext = false;
-            Debug.Log("ok");
+            
+            Debug.Log(counter);
         }
 
         if(!isColliding && Input.GetMouseButtonUp(0))
@@ -47,5 +54,10 @@ public class FanSpawner : MonoBehaviour
         {
             isColliding = false;
         }
+    }
+
+    public int getCounter()
+    {
+        return counter;
     }
 }
