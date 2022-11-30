@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     private Minigame currentMinigame;
     private int currentIndex;
     private bool wasWin;
+    private bool active;
 
     void Start()
     {
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
         transitionAnimator = GetComponent<Animator>();
         currentIndex = -1;
         LoadMinigame(GetNewMinigameID());
+        active = false;
     }
 
     public void SetTimerPercentage(float percentage)
@@ -45,14 +47,18 @@ public class GameManager : MonoBehaviour
         if (currentMinigame == null)
             return;
         currentMinigame.StartMinigame();
+        active = true;
     }
 
     //called by minigame when finished
     public void EndCurrentMinigame(bool isWin)
     {
+        if (!active)
+            return;
         transitionAnimator.SetTrigger("End");
         //transitionAnimator.Play("End Minigame"); //the animator thinks the parameters don't exist so this is the next best thing
         wasWin = isWin;
+        active = false;
     }
 
     public void LoadFeedbackMessage()
