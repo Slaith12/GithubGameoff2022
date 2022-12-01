@@ -10,6 +10,7 @@ public class LightModeMinigame : Minigame
     [SerializeField] private GameObject cursor;
 
     private GameObject newObj;
+    private Coroutine spawnRoutine;
 
     public override void StartMinigame()
     {
@@ -17,7 +18,7 @@ public class LightModeMinigame : Minigame
         timer = maxTime;
         GameManager.gameManager.SetTimerPercentage(1);
 
-        StartCoroutine(spawn());
+        spawnRoutine = StartCoroutine(spawn());
     }
 
     private void Update()
@@ -41,9 +42,10 @@ public class LightModeMinigame : Minigame
     {
         while(true)
         {
-            yield return new WaitForSeconds(Random.Range(0.4f, 0.7f));
-            int side = (int)Random.Range(1, 5);
+            yield return new WaitForSeconds(Random.Range(0.9f, 1.1f));
+            int side = Random.Range(1, 4);
             Quaternion rot = Quaternion.Euler(0, 0, 0);
+            GameObject newObj;
             if(side == 1)
             {
                 newObj = Instantiate(cursor, new Vector2(-4, Random.Range(-4, 4)), rot);
@@ -52,11 +54,6 @@ public class LightModeMinigame : Minigame
             else if(side == 2)
             {
                 newObj = Instantiate(cursor, new Vector2(4, Random.Range(-4, 4)), rot);
-                newObj.transform.SetParent(gameObject.transform);
-            }
-            else if(side == 3)
-            {
-                newObj = Instantiate(cursor, new Vector2(Random.Range(-4, 4), -4), rot);
                 newObj.transform.SetParent(gameObject.transform);
             }
             else
@@ -70,5 +67,11 @@ public class LightModeMinigame : Minigame
     public void buttonClicked()
     {
         EndMinigame(false);
+    }
+
+    public override void EndMinigame(bool isWin)
+    {
+        StopCoroutine(spawnRoutine);
+        base.EndMinigame(isWin);
     }
 }
