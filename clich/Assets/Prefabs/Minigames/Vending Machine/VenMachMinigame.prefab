@@ -652,6 +652,9 @@ MonoBehaviour:
   maxTime: 15
   mg: {fileID: 2614421233147959738}
   fs: {fileID: 7828536738507122936}
+  endingAnimator: {fileID: 0}
+  vend: {fileID: 5367346817305747691}
+  mary: {fileID: 955311127736027775}
 --- !u!1 &5005135947154141612
 GameObject:
   m_ObjectHideFlags: 0
