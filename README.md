@@ -19,4 +19,4 @@ gaming :)))
 
 
 
-<a href="https://mirrormiru.github.io/MiruWeb/" style="color:white; text-decoration: none;">miru wuz here</a>
+<a href="https://mirrormiru.github.io/MiruWeb/" style="text-decoration: none; color:#FFFFFF;">miru wuz here</a>
