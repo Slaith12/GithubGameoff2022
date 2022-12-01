@@ -26,9 +26,9 @@ public class PipeDamage : MonoBehaviour
             return;
         float damage = (rock.position - prevPos).sqrMagnitude;
         Debug.Log($"Damage: {damage}");
-        if (damage > maxHealth / 4)
+        if (damage > maxHealth / 3.5f)
         {
-            damage = maxHealth / 4;
+            damage = maxHealth / 3.5f;
             Debug.Log("Damage Cap Exceeded");
         }
         health -= damage;
