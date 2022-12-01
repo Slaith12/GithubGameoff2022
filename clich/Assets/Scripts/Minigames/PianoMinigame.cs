@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class PianoMinigame : Minigame
 {
     // Start is called before the first frame update
+    public static PianoMinigame minigame { get; private set; }
 
     [SerializeField] float maxTime = 10;
     private Animator endingAnimator;
@@ -15,7 +16,7 @@ public class PianoMinigame : Minigame
 
     private void Awake()
     {
-        
+        minigame = this;
         endingAnimator = GetComponent<Animator>();
     }
 
@@ -37,14 +38,7 @@ public class PianoMinigame : Minigame
         if (timer <= 0)
         {
             started = false;
-            if (count >= 5)
-            {
-                endingAnimator.SetTrigger("Win");
-            }
-            else
-            {
-                endingAnimator.SetTrigger("Lose");
-            }
+            EndMinigame(true);
             return;
         }
     }

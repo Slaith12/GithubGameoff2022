@@ -13,7 +13,7 @@ public class Spawner : MonoBehaviour
 
     public void SpawnThieves() 
     {
-        Instantiate(g);
+        Instantiate(g, transform);
     }
 
     // Update is called once per frame

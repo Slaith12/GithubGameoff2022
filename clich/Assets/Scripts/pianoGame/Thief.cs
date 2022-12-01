@@ -31,7 +31,7 @@ public class Thief : MonoBehaviour
         if (col.CompareTag("piano")) 
         {
             score++;
-            Destroy(this.gameObject,.15f);
+            Destroy(this.gameObject);
         }
 
 
@@ -41,9 +41,7 @@ public class Thief : MonoBehaviour
     {
         if (collision.collider.CompareTag("Mary")) 
         {
-            lives--;
-            Debug.Log("hit! lives left: " + lives);
-            Destroy(this.gameObject, .1f);
+            PianoMinigame.minigame.EndMinigame(false);
         }
     }
 
