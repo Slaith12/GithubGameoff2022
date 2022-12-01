@@ -939,6 +939,14 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3025704696535639449, guid: 3a49dfaa114dfdc4880c9576b0b4ae3a, type: 3}
+      propertyPath: minigames.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3025704696535639449, guid: 3a49dfaa114dfdc4880c9576b0b4ae3a, type: 3}
+      propertyPath: minigames.Array.data[4]
+      value: 
+      objectReference: {fileID: 2104651038704571751, guid: c2d98045bc543634db44a5428804a86e, type: 3}
     - target: {fileID: 4188755074338705829, guid: 3a49dfaa114dfdc4880c9576b0b4ae3a, type: 3}
       propertyPath: m_RootOrder
       value: 0

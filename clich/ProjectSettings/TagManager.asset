@@ -8,6 +8,8 @@ TagManager:
   - clickable
   - LFish
   - BFish
+  - Mary
+  - piano
   layers:
   - Default
   - TransparentFX
