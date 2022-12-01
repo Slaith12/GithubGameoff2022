@@ -38,7 +38,7 @@ public class VendingController : Minigame
         if (timer <= 0)
         {
             started = false;
-            endingAnimator.SetTrigger("win");
+            endingAnimator.SetTrigger("lose");
             vend.enabled = true;
             ledge.enabled = true;
             vend2.gravityScale = 1;
@@ -63,7 +63,7 @@ public class VendingController : Minigame
     public void hitGround()
     {
         started = false;
-        endingAnimator.SetTrigger("win");
+        endingAnimator.SetTrigger("lose");
         vend.enabled = true;
         ledge.enabled = true;
         vend2.gravityScale = 1;
