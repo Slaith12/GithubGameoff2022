@@ -9,22 +9,34 @@ public class GameManager : MonoBehaviour
 
     private Animator transitionAnimator;
     [SerializeField] TMP_Text levelText;
+    [SerializeField] TMP_Text failText;
+    [SerializeField] TMP_Text failLimit;
     [SerializeField] TimerManager timer;
 
+    [SerializeField] Minigame titleScreen;
     [SerializeField] Minigame[] minigames;
     public int forceMinigame = -1;
     private Minigame currentMinigame;
     private int currentIndex;
     private bool wasWin;
     private bool active;
+    private int fails;
 
     void Start()
     {
         gameManager = this;
         transitionAnimator = GetComponent<Animator>();
         currentIndex = -1;
-        LoadMinigame(GetNewMinigameID());
         active = false;
+        failText.SetText("");
+        LoadMinigame(-1);
+    }
+
+    private void SetupSession()
+    {
+        fails = 0;
+        failText.SetText("0");
+        failLimit.SetText("3");
     }
 
     public void SetTimerPercentage(float percentage)
@@ -35,7 +47,16 @@ public class GameManager : MonoBehaviour
     public void LoadMinigame(int index)
     {
         UnloadMinigame();
-        GameObject minigameObject = Instantiate(minigames[index].gameObject);
+        GameObject newMinigame;
+        if (index == -1)
+        {
+            newMinigame = titleScreen.gameObject;
+            failText.SetText("N");
+            failLimit.SetText("A");
+        }
+        else
+            newMinigame = minigames[index].gameObject;
+        GameObject minigameObject = Instantiate(newMinigame);
         currentMinigame = minigameObject.GetComponent<Minigame>();
         levelText.text = currentMinigame.GetInstructionSnippet();
         currentIndex = index;
@@ -59,11 +80,18 @@ public class GameManager : MonoBehaviour
         //transitionAnimator.Play("End Minigame"); //the animator thinks the parameters don't exist so this is the next best thing
         wasWin = isWin;
         active = false;
+        if (!isWin)
+        {
+            fails++;
+            failText.SetText(fails.ToString());
+        }
     }
 
     public void LoadFeedbackMessage()
     {
-        if (wasWin)
+        if (currentIndex == -1)
+            levelText.text = "";
+        else if (wasWin)
             levelText.text = "Good Job!";
         else
             levelText.text = "Oh No!";
@@ -87,6 +115,8 @@ public class GameManager : MonoBehaviour
     //called by transition animator
     public void GoToNextMinigame()
     {
+        if (currentIndex == -1)
+            SetupSession();
         LoadMinigame(GetNewMinigameID());
         transitionAnimator.SetTrigger("Start");
         //transitionAnimator.Play("Start Minigame"); //the animator thinks the parameters don't exist so this is the next best thing
@@ -94,6 +124,8 @@ public class GameManager : MonoBehaviour
 
     private int GetNewMinigameID()
     {
+        if (fails >= 3)
+            return -1;
         if (forceMinigame != -1)
             return forceMinigame;
         int newIndex;
