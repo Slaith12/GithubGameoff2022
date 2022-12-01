@@ -219,6 +219,10 @@ PrefabInstance:
       value: Overlay
       objectReference: {fileID: 0}
     - target: {fileID: 3025704696535639449, guid: 3a49dfaa114dfdc4880c9576b0b4ae3a, type: 3}
+      propertyPath: forceMinigame
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3025704696535639449, guid: 3a49dfaa114dfdc4880c9576b0b4ae3a, type: 3}
       propertyPath: minigames.Array.size
       value: 2
       objectReference: {fileID: 0}

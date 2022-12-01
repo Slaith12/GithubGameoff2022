@@ -585,11 +585,11 @@ RectTransform:
   m_Children:
   - {fileID: 1223459019}
   m_Father: {fileID: 1636684370}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -100}
+  m_AnchoredPosition: {x: 15, y: -170}
   m_SizeDelta: {x: 300, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1563378644
@@ -723,11 +723,11 @@ RectTransform:
   m_Children:
   - {fileID: 281545324}
   m_Father: {fileID: 1636684370}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 100}
+  m_AnchoredPosition: {x: 15, y: 150}
   m_SizeDelta: {x: 300, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2139197277
@@ -933,7 +933,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1263951757931536285, guid: 3a49dfaa114dfdc4880c9576b0b4ae3a, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4293519848
+      value: 4259965416
       objectReference: {fileID: 0}
     - target: {fileID: 1263951757931536286, guid: 3a49dfaa114dfdc4880c9576b0b4ae3a, type: 3}
       propertyPath: m_RootOrder
@@ -951,6 +951,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2700659808695821734, guid: 3a49dfaa114dfdc4880c9576b0b4ae3a, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4188755074338705829, guid: 3a49dfaa114dfdc4880c9576b0b4ae3a, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -965,7 +969,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8552794751369559721, guid: 3a49dfaa114dfdc4880c9576b0b4ae3a, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a49dfaa114dfdc4880c9576b0b4ae3a, type: 3}
