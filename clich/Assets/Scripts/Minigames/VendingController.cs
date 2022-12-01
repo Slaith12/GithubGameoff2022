@@ -12,6 +12,10 @@ public class VendingController : Minigame
     [SerializeField] private FanSpawner fs;
 
     private bool quit = false;
+    [SerializeField] private Animator endingAnimator;
+
+    [SerializeField] GameObject vend;
+    [SerializeField] GameObject mary;
 
     public override void StartMinigame()
     {
@@ -31,6 +35,8 @@ public class VendingController : Minigame
         }
         if (timer <= 0)
         {
+            StartCoroutine(Fall());
+            endingAnimator.SetTrigger("win");
             EndMinigame(false);
         }
         if(fs.getCounter() == 7 && mg.getSelectedObject() == null)
@@ -47,11 +53,13 @@ public class VendingController : Minigame
 
     public override string GetInstructionSnippet()
     {
-        return "Stack the Fans";
+        return "Stack 6 Fans";
     }
 
     public void hitGround()
     {
+        StartCoroutine(Fall());
+        endingAnimator.SetTrigger("win");
         EndMinigame(false);
     }
 
@@ -75,7 +83,12 @@ public class VendingController : Minigame
             }
             yield return null;
         }
-
+        endingAnimator.SetTrigger("win");
         EndMinigame(true);
+    }
+
+    IEnumerator Fall()
+    {
+
     }
 }
