@@ -35,9 +35,8 @@ public class VendingController : Minigame
         }
         if (timer <= 0)
         {
-            StartCoroutine(Fall());
+            started = false;
             endingAnimator.SetTrigger("win");
-            EndMinigame(false);
         }
         if(fs.getCounter() == 7 && mg.getSelectedObject() == null)
         {
@@ -58,9 +57,8 @@ public class VendingController : Minigame
 
     public void hitGround()
     {
-        StartCoroutine(Fall());
+        started = false;
         endingAnimator.SetTrigger("win");
-        EndMinigame(false);
     }
 
     IEnumerator Check()
@@ -83,12 +81,7 @@ public class VendingController : Minigame
             }
             yield return null;
         }
+        started = false;
         endingAnimator.SetTrigger("win");
-        EndMinigame(true);
-    }
-
-    IEnumerator Fall()
-    {
-
     }
 }
