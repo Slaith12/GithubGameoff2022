@@ -304,6 +304,7 @@ MonoBehaviour:
   minigames:
   - {fileID: 4077587680472462800, guid: b12a179492002492180d3bed460ec1ed, type: 3}
   - {fileID: 2838275037351048677, guid: aa4eb4dee8d5743dbb99805b731e88eb, type: 3}
+  - {fileID: 2104651038704571751, guid: c2d98045bc543634db44a5428804a86e, type: 3}
   forceMinigame: -1
 --- !u!95 &8892091935622959433
 Animator:
