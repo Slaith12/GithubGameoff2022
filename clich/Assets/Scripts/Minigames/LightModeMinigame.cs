@@ -41,7 +41,7 @@ public class LightModeMinigame : Minigame
     {
         while(true)
         {
-            yield return new WaitForSeconds(Random.Range(0.4f, 1.0f));
+            yield return new WaitForSeconds(Random.Range(0.4f, 0.7f));
             int side = (int)Random.Range(1, 5);
             Quaternion rot = Quaternion.Euler(0, 0, 0);
             if(side == 1)
