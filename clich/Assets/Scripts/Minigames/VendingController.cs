@@ -47,7 +47,7 @@ public class VendingController : Minigame
 
     public override string GetInstructionSnippet()
     {
-        return "Stack the Fans";
+        return "Stack 6 Fans";
     }
 
     public void hitGround()
