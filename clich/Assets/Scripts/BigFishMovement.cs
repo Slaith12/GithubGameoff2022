@@ -41,23 +41,25 @@ public class BigFishMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        dist = Vector2.Distance(targetPos, transform.position);
         Vector2 direction = targetPos - (Vector2)transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        rb.rotation = angle;
+        if(dist>0.1f) rb.rotation = angle;
         direction.Normalize();
         movement = direction;
-
         
+
+
     }
     void moveCharacter(Vector2 direction)
     {
-        rb.MovePosition((Vector2)transform.position + (direction * speed * Time.deltaTime));
+        if(dist>0.1f)rb.MovePosition((Vector2)transform.position + (direction * speed * Time.deltaTime));
     }
     private void FixedUpdate()
     {
-        dist = Vector2.Distance(targetPos, transform.position);
+        
 
-        if (dist < 0.1f)
+        if (dist < 0.1f && moving)
         {
             targetPos = startPos;
             moving = false;
@@ -65,7 +67,7 @@ public class BigFishMovement : MonoBehaviour
         if ((Vector2)transform.position == startPos && dist >= minDist)
         {
             targetPos = startPos;
-            moving = false;
+            
         }
         if ((Vector2)transform.position == startPos && dist < minDist && !moving)
         {
@@ -73,14 +75,12 @@ public class BigFishMovement : MonoBehaviour
             moving = true;
         }
 
+        moveCharacter(movement);
         
-         moveCharacter(movement);
+         
         
         
     }
-    public static Quaternion LookAtTarget(Vector2 rotation)
-    {
-        return Quaternion.Euler(0, 0, Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg);
-    }
+   
     
 }

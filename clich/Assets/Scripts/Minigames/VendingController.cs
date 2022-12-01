@@ -14,8 +14,10 @@ public class VendingController : Minigame
     private bool quit = false;
     [SerializeField] private Animator endingAnimator;
 
-    [SerializeField] GameObject vend;
+    [SerializeField] BoxCollider2D vend;
+    [SerializeField] Rigidbody2D vend2;
     [SerializeField] GameObject mary;
+    [SerializeField] BoxCollider2D ledge;
 
     public override void StartMinigame()
     {
@@ -36,7 +38,10 @@ public class VendingController : Minigame
         if (timer <= 0)
         {
             started = false;
-            endingAnimator.SetTrigger("win");
+            endingAnimator.SetTrigger("lose");
+            vend.enabled = true;
+            ledge.enabled = true;
+            vend2.gravityScale = 1;
         }
         if(fs.getCounter() == 7 && mg.getSelectedObject() == null)
         {
@@ -58,7 +63,10 @@ public class VendingController : Minigame
     public void hitGround()
     {
         started = false;
-        endingAnimator.SetTrigger("win");
+        endingAnimator.SetTrigger("lose");
+        vend.enabled = true;
+        ledge.enabled = true;
+        vend2.gravityScale = 1;
     }
 
     IEnumerator Check()
