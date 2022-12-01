@@ -4,19 +4,30 @@ using UnityEngine;
 
 public class LightModeMinigame : Minigame
 {
+    public static LightModeMinigame minigame { get; private set; }
+
     [SerializeField] float maxTime = 10;
     private float timer;
 
     [SerializeField] private GameObject cursor;
 
-    private GameObject newObj;
+    private List<GameObject> cursors;
     private Coroutine spawnRoutine;
+    private Animator animator;
 
     public override void StartMinigame()
+    {
+        minigame = this;
+        animator = GetComponent<Animator>();
+        animator.SetTrigger("Start");
+    }
+
+    public void Begin()
     {
         started = true;
         timer = maxTime;
         GameManager.gameManager.SetTimerPercentage(1);
+        cursors = new List<GameObject>();
 
         spawnRoutine = StartCoroutine(spawn());
     }
@@ -29,7 +40,7 @@ public class LightModeMinigame : Minigame
         GameManager.gameManager.SetTimerPercentage(timer / maxTime);
         if (timer <= 0)
         {
-            EndMinigame(true);
+            PlayEnding(true);
         }
     }
 
@@ -42,36 +53,51 @@ public class LightModeMinigame : Minigame
     {
         while(true)
         {
-            yield return new WaitForSeconds(Random.Range(0.9f, 1.1f));
             int side = Random.Range(1, 4);
             Quaternion rot = Quaternion.Euler(0, 0, 0);
             GameObject newObj;
             if(side == 1)
             {
-                newObj = Instantiate(cursor, new Vector2(-4, Random.Range(-4, 4)), rot);
+                newObj = Instantiate(cursor, new Vector2(-5, Random.Range(-4, 4)), rot);
                 newObj.transform.SetParent(gameObject.transform);
             }
             else if(side == 2)
             {
-                newObj = Instantiate(cursor, new Vector2(4, Random.Range(-4, 4)), rot);
+                newObj = Instantiate(cursor, new Vector2(5, Random.Range(-2, 4)), rot);
                 newObj.transform.SetParent(gameObject.transform);
             }
             else
             {
-                newObj = Instantiate(cursor, new Vector2(Random.Range(-4, 4), 4), rot);
+                newObj = Instantiate(cursor, new Vector2(Random.Range(-2, 4), 5), rot);
                 newObj.transform.SetParent(gameObject.transform);
             }
+            cursors.Insert(0, newObj);
+            yield return new WaitForSeconds(Random.Range(0.6f, 0.8f));
+        }
+    }
+
+    IEnumerator ClearCursors()
+    {
+        foreach(GameObject cursor in cursors)
+        {
+            yield return new WaitForSeconds(0.05f);
+            Destroy(cursor);
         }
     }
 
     public void buttonClicked()
     {
-        EndMinigame(false);
+        PlayEnding(false);
     }
 
-    public override void EndMinigame(bool isWin)
+    public void PlayEnding(bool isWin)
     {
+        started = false;
         StopCoroutine(spawnRoutine);
-        base.EndMinigame(isWin);
+        StartCoroutine(ClearCursors());
+        if (isWin)
+            animator.SetTrigger("Win");
+        else
+            animator.SetTrigger("Lose");
     }
 }
