@@ -57,6 +57,6 @@ public class SampleGame1 : Minigame
 
     public override string GetInstructionSnippet()
     {
-        return "Press Space";
+        return "This is a very long title!";
     }
 }
