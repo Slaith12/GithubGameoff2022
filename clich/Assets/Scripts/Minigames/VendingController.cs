@@ -14,15 +14,13 @@ public class VendingController : Minigame
     private bool quit = false;
     [SerializeField] private Animator endingAnimator;
 
-    [SerializeField] BoxCollider2D vend;
-    [SerializeField] Rigidbody2D vend2;
-    [SerializeField] GameObject mary;
-    [SerializeField] BoxCollider2D ledge;
+    [SerializeField] Rigidbody2D vendRB;
 
     public override void StartMinigame()
     {
         started = true;
         timer = maxTime;
+        vendRB.bodyType = RigidbodyType2D.Kinematic;
         GameManager.gameManager.SetTimerPercentage(1);
     }
 
@@ -37,11 +35,7 @@ public class VendingController : Minigame
         }
         if (timer <= 0)
         {
-            started = false;
-            endingAnimator.SetTrigger("lose");
-            vend.enabled = true;
-            ledge.enabled = true;
-            vend2.gravityScale = 1;
+            Lose();
         }
         if(fs.getCounter() == 7 && mg.getSelectedObject() == null)
         {
@@ -62,23 +56,25 @@ public class VendingController : Minigame
 
     public void hitGround()
     {
+        Lose();
+    }
+
+    void Lose()
+    {
         started = false;
         endingAnimator.SetTrigger("lose");
-        vend.enabled = true;
-        ledge.enabled = true;
-        vend2.gravityScale = 1;
+        vendRB.bodyType = RigidbodyType2D.Dynamic;
     }
 
     IEnumerator Check()
     {
         checking = true;
 
-        float counter = 3;
-        float waitTime = 0;
-        while (counter > waitTime)
+        float timer = 2;
+        while (timer > 0)
         {
             //Increment Timer until counter >= waitTime
-            counter -= Time.deltaTime;
+            timer -= Time.deltaTime;
             //Wait for a frame so that Unity doesn't freeze
             //Check if we want to quit this function
             if (quit)
