@@ -31,7 +31,8 @@ public class Thief : MonoBehaviour
         if (col.CompareTag("piano")) 
         {
             score++;
-            Destroy(this.gameObject);
+            PianoMinigame.minigame.EndMinigame(true);
+            gameObject.SetActive(false);
         }
 
 

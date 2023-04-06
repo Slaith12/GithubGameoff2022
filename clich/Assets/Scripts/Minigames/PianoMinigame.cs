@@ -45,6 +45,6 @@ public class PianoMinigame : Minigame
 
     public override string GetInstructionSnippet()
     {
-        return "Stop the bad guys!";
+        return "Drop the piano on the bad guy!";
     }
 }
